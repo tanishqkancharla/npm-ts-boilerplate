@@ -1,16 +1,16 @@
 {
-	"name": "boilerplate",
+	"name": "npm-ts-boilerplate",
 	"version": "0.0.1",
 	"author": "Tanishq Kancharla <tanishqkancharla3@gmail.com>",
 	"description": "",
 	"keywords": [],
 	"license": "MIT",
-	"main": "build/index.js",
+	"main": "dist/index.js",
 	"files": [
-		"build/*"
+		"dist/*"
 	],
 	"repository": {
-		"url": "https://github.com/tanishqkancharla/teg"
+		"url": "https://github.com/tanishqkancharla/npm-ts-boilerplate"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit",
