@@ -1,1 +1,3 @@
-export const constant = 5;
+export function add(x: number, y: number) {
+	return x + y;
+}
