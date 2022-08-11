@@ -23,9 +23,7 @@
 	},
 	"scripts": {
 		"clean": "rm -rf dist/*",
-		"build-cjs": "esbuild ./src/index.ts --sourcemap --outdir=dist --format=cjs",
-		"build-esm": "esbuild ./src/index.ts --outdir=dist --format=esm --out-extension:.js=.mjs",
-		"build": "npm run clean; npm run build-esm; npm run build-cjs; tsc --emitDeclarationOnly",
+		"build": "npm run clean; ts-node ./build.ts && tsc --emitDeclarationOnly",
 		"typecheck": "tsc --noEmit",
 		"release": "npm run clean; npm run build; npm publish",
 		"test": "jest --verbose",
