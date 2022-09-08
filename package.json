@@ -2,28 +2,20 @@
 	"name": "npm-ts-boilerplate",
 	"version": "0.0.1",
 	"author": "Tanishq Kancharla <tanishqkancharla3@gmail.com>",
-	"description": "",
+	"description": "A boilerplate for typescript npm packages",
 	"keywords": [],
 	"license": "MIT",
 	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist/*"
 	],
-	"exports": {
-		".": {
-			"require": "./dist/index.js",
-			"import": "./dist/index.mjs",
-			"types": "./dist/index.d.ts"
-		}
-	},
 	"repository": {
 		"url": "https://github.com/tanishqkancharla/npm-ts-boilerplate"
 	},
 	"scripts": {
 		"clean": "rm -rf dist/*",
-		"build": "npm run clean; ts-node ./build.ts && tsc --emitDeclarationOnly",
+		"build": "tsc",
 		"typecheck": "tsc --noEmit",
 		"release": "npm run clean; npm run build; npm publish",
 		"test": "jest --verbose",
