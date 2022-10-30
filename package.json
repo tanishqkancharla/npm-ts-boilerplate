@@ -15,9 +15,9 @@
 	},
 	"scripts": {
 		"clean": "rm -rf dist/*",
-		"build": "tsc",
+		"build": "npm run clean; tsx build.ts",
 		"typecheck": "tsc --noEmit",
-		"release": "npm run clean; npm run build; npm publish",
+		"release": "npm run build; npm publish",
 		"test": "jest --verbose",
 		"bundlesize": "esbuild ./src/index.ts --bundle --minify --outfile=bundled; rm bundled"
 	},
@@ -26,7 +26,7 @@
 		"esbuild": "^0.14.54",
 		"jest": "^28.1.0",
 		"ts-jest": "^28.0.5",
-		"ts-node": "^10.9.1",
+		"tsx": "^3.11.0",
 		"typescript": "^4.6.4"
 	}
 }
