@@ -1,37 +1,29 @@
+import { exec as callbackExec } from "child_process";
 import esbuild from "esbuild";
-import fs from "node:fs/promises";
-import path from "path";
-import * as ts from "typescript";
+import util from "util";
 
-function compileDts(fileNames: string[]): void {
-	const options: ts.CompilerOptions = {
-		allowJs: true,
-		declaration: true,
-		emitDeclarationOnly: true,
-		moduleResolution: ts.ModuleResolutionKind.NodeJs,
-		outDir: "dist",
-	};
-
-	const program = ts.createProgram(fileNames, options);
-	program.emit();
-}
+const exec = util.promisify(callbackExec);
 
 async function build() {
-	const srcFiles = await fs.readdir("./src");
-
-	const entryPoints = srcFiles
-		.filter((filePath) => !filePath.endsWith(".test.ts"))
-		.map((name) => path.join(__dirname, "src", name));
-
 	await Promise.all([
 		esbuild.build({
-			entryPoints,
+			entryPoints: ["src/index.ts"],
 			outdir: "dist",
 			format: "esm",
-			sourcemap: true,
+			bundle: true,
 		}),
-		compileDts(entryPoints),
+		exec("npx tsc"),
 	]);
+
+	await esbuild.build({
+		entryPoints: ["dist/index.d.ts"],
+		outdir: "dist",
+		bundle: true,
+
+		// outExtension: {
+		//   ".ts": "."
+		// }
+	});
 }
 
 build();
