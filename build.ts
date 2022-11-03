@@ -13,17 +13,16 @@ async function build() {
 			bundle: true,
 		}),
 		exec("npx tsc"),
+		esbuild.build({
+			entryPoints: ["src/index.ts"],
+			outdir: "dist",
+			format: "cjs",
+			bundle: true,
+			outExtension: {
+				".js": ".cjs",
+			},
+		}),
 	]);
-
-	await esbuild.build({
-		entryPoints: ["dist/index.d.ts"],
-		outdir: "dist",
-		bundle: true,
-
-		// outExtension: {
-		//   ".ts": "."
-		// }
-	});
 }
 
 build();
