@@ -22,7 +22,9 @@
 		"bundlesize": "esbuild ./src/index.ts --bundle --minify --outfile=bundled; rm bundled"
 	},
 	"devDependencies": {
+		"@types/dts-bundle": "^0.0.32",
 		"@types/jest": "^27.5.0",
+		"dts-bundle": "^0.7.3",
 		"esbuild": "^0.14.54",
 		"jest": "^28.1.0",
 		"ts-jest": "^28.0.5",

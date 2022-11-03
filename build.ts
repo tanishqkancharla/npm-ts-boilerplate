@@ -1,4 +1,5 @@
 import { exec as callbackExec } from "child_process";
+import * as dts from "dts-bundle";
 import esbuild from "esbuild";
 import util from "util";
 
@@ -23,6 +24,11 @@ async function build() {
 			},
 		}),
 	]);
+
+	dts.bundle({
+		name: "index",
+		main: "dist/index.d.ts",
+	});
 }
 
 build();
