@@ -25,3 +25,8 @@ I've been iterating on this for a while. Here are the interesting bits:
 * Only `src` and `dist` folders are published to NPM.
 * Tests are in `*.test.ts` files, run by Vitest
 * API Extractor checks for you that everything you meant to export is exported and everything that was not meant to be exported isn't.
+
+The reason I don't just use Parcel (my preferred build system) is because of:
+* https://github.com/parcel-bundler/parcel/issues/7951
+* Couldn't find a great way to integrate API extractor
+* Parcel mangles names, and I didn't know how to turn that off.
