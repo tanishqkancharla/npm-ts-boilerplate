@@ -1,5 +1,5 @@
 {
-	"name": "npm-ts-boilerplate",
+	"name": "@tk/npm-boilerplate",
 	"version": "0.0.1",
 	"author": "Tanishq Kancharla <tanishqkancharla3@gmail.com>",
 	"description": "A boilerplate for typescript npm packages",
@@ -13,6 +13,9 @@
 		"dist",
 		"src"
 	],
+	"bin": {
+		"@tk/npm-boilerplate": "./scripts/setupBoilerplate.ts"
+	},
 	"repository": {
 		"url": "https://github.com/tanishqkancharla/npm-ts-boilerplate"
 	},
