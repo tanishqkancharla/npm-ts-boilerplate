@@ -6,7 +6,7 @@
 		"allowSyntheticDefaultImports": true,
 		"removeComments": false,
 		"lib": ["ESNext"],
-		"outDir": "dist/types",
+		"outDir": "dist",
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"jsx": "react-jsx",

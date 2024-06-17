@@ -1,7 +1,6 @@
 #! tsx
+/// <reference types="@types/node" />
 
-import { Extractor } from "@microsoft/api-extractor"
-import c from "ansi-colors"
 import assert from "assert/strict"
 import * as esbuild from "esbuild"
 import fs from "fs"
@@ -28,12 +27,6 @@ async function main() {
 
 	await runEsbuild()
 	runTypeScript()
-	runApiExtractor()
-
-	await Promise.all([
-		fs.promises.rm("dist/types", { recursive: true }),
-		fs.promises.rm(`dist/${name}.d.ts`),
-	])
 }
 
 const sharedConfig: esbuild.BuildOptions = {
@@ -66,28 +59,21 @@ function runEsbuild() {
 function runTypeScript() {
 	const tsConfig = typescript.readConfigFile(
 		"./tsconfig.json",
-		typescript.sys.readFile
+		typescript.sys.readFile,
 	)
 	const tsConfigParseResult = typescript.parseJsonConfigFileContent(
 		tsConfig.config,
 		typescript.sys,
-		"./"
+		"./",
 	)
 	const program = typescript.createProgram(
 		tsConfigParseResult.fileNames,
-		tsConfigParseResult.options
+		tsConfigParseResult.options,
 	)
-	return program.emit()
-}
 
-function runApiExtractor() {
-	const result = Extractor.loadConfigAndInvoke("scripts/api-extractor.json", {
-		typescriptCompilerFolder: "node_modules/typescript",
-		showVerboseMessages: true,
-	})
-	assert(result.succeeded, "API Extractor failed")
-	console.log(c.green("API Extractor was successful"))
-	return result
+	program.emit()
+
+	console.log("TypeScript declaration file emitted")
 }
 
 main().catch((e) => {
